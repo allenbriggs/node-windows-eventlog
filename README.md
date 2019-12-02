@@ -4,14 +4,13 @@ Native node.js module to log messages to the Windows Event Log.
 
 ## Installation
 
-    $ npm install windows-eventlog
+    $ npm install nickngsr/node-windows-eventlog
 
 ## Prerequisites
 
 You need to have a compatible Visual Studio compiler installed, e.g.:
 
-- [Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs)
-- [Visual C++ 2010 redistributable fox x86](http://www.microsoft.com/en-us/download/details.aspx?id=5555)
+    $ npm i -g windows-build-tools
 
 
 ## Usage
@@ -19,8 +18,8 @@ You need to have a compatible Visual Studio compiler installed, e.g.:
 When using the library like this:
 
 ```js
-  var EventLog = require('windows-eventlog').EventLog;
-  var myeventlog = new EventLog("MyAppName");
+  const EventLog = require('windows-eventlog').EventLog;
+  const myeventlog = new EventLog("MyAppName");
   myeventlog.logSync("warn", "a message");
   myeventlog.logSync("a message"); // severity defaults to "info"
   myeventlog.log("error", "a message", function(err) {
@@ -32,20 +31,20 @@ you will see something like this:
 
 ![2012-04-09_1007.png](http://joseoncodecom.ipage.com/wp-content/uploads/images/2012-04-09_1007.png)
 
-### new EventLog(source[, logName])
+### new EventLog(source)
 
-This creates an instance of the EventLog with the given source. You can optionally pass a logName, defaults to "Application".
-
-If the source doesn't exist in the event log database it will be created with the givne log name.
+This creates an instance of the EventLog with the given source.
 
 
-### eventLog.log([severity,] message, callback)
+### eventLog.log([severity,] message, [eventId,] callback)
 
 This method will create an entry in the event log with the given message.
 
 Optionally you can specify a severity a.k.a [log entry type](http://msdn.microsoft.com/es-es/library/system.diagnostics.eventlogentrytype.aspx). The possible values are "info", "warn" and "error".
 
-### eventLog.logSync([severity,] message)
+Optionally you can specify an eventId a.k.a 1003
+
+### eventLog.logSync([severity,] message[, eventId])
 
 Same as `eventLog.log()` except that it blocks.
 

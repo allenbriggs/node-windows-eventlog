@@ -4,7 +4,7 @@ Native node.js module to log messages to the Windows Event Log.
 
 ## Installation
 
-    $ npm install nickngsr/node-windows-eventlog
+    $ npm install allenbriggs/node-windows-eventlog
 
 ## Prerequisites
 

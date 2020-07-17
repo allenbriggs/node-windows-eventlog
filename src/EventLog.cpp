@@ -125,7 +125,7 @@ namespace {
 
         EventLog(const std::string& source) {
             std::wstring wideSource(source.begin(), source.end());
-            eventLogHandle_ = RegisterEventSource(NULL, wideSource.c_str());
+            eventLogHandle_ = RegisterEventSource("test", wideSource.c_str());
             if (!eventLogHandle_) {
                 Nan::ThrowError(("Unable to register event source: " + getLastErrorAsString()).c_str());
             }
